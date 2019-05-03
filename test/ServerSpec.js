@@ -20,7 +20,7 @@ var xbeforeEach = function() {};
 describe('', function() {
   var db;
   var server;
-
+  
   var clearDB = function(connection, tablenames, done) {
     var count = 0;
     tablenames.forEach(function(tablename) {
@@ -32,9 +32,8 @@ describe('', function() {
       });
     });
   };
-
+  
   beforeEach(function(done) {
-
     /*************************************************************************************/
     /* TODO: Update user and password if different than on your local machine            */
     /*************************************************************************************/
@@ -43,18 +42,18 @@ describe('', function() {
       password: 'student',
       database: 'shortly'
     });
-
+    
     /**************************************************************************************/
     /* TODO: If you create a new MySQL tables, add it to the tablenames collection below. */
     /**************************************************************************************/
     var tablenames = ['links', 'clicks', 'users', 'sessions'];
-
+    
     db.connect(function(err) {
       if (err) { return done(err); }
       /* Empties the db table before each test so that multiple tests
-       * (or repeated runs of the tests) won't screw each other up: */
-      clearDB(db, tablenames, function() {
-        server = app.listen(port, done);
+      * (or repeated runs of the tests) won't screw each other up: */
+     clearDB(db, tablenames, function() {
+       server = app.listen(port, done);
       });
     });
 
@@ -123,7 +122,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Creation:', function() {
+  describe('Account Creation:', function() {
 
     it('signup creates a new user record', function(done) {
       var options = {
@@ -610,7 +609,7 @@ describe('', function() {
       }
     };
 
-    xbeforeEach(function(done) {
+    beforeEach(function(done) {
       var options = {
         'method': 'POST',
         'followAllRedirects': true,
