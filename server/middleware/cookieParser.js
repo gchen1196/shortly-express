@@ -1,4 +1,4 @@
-const parseCookies = (req, res, next) => {
+module.exports.parseCookies = (req, res, next) => {
   var obj = {};
   
   if(req.headers && req.headers.cookie) {
@@ -15,4 +15,3 @@ const parseCookies = (req, res, next) => {
   next();
 };
 
-module.exports = parseCookies;
