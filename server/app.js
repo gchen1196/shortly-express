@@ -88,6 +88,21 @@ app.post('/signup', (req, res, next) => {
 });
 
 
+app.post('/login', (req, res, next) => {
+  models.Users.get({username: req.body.username})
+  .then((user) => {
+    if(models.Users.compare(req.body.password, user.password, user.salt)) {
+      res.redirect('/');
+    } else {
+      res.redirect('/login');
+    }
+  })
+  .catch(error => {
+    res.redirect('/login');
+  });
+})
+
+
 /************************************************************/
 // Handle the code parameter route last - if all other routes fail
 // assume the route is a short code and try and handle it here.
